@@ -32,11 +32,11 @@ jobs:
           - windows-latest
 
         mm_version:
-          - "1.12-dev"
+          - "master"
 
         include:
-          - mm_version: "1.12-dev"
-            mm_branch: "1.12-dev"
+          - mm_version: "master"
+            mm_branch: "master"
 
           - os: ubuntu-latest
             os_short: linux
@@ -61,7 +61,7 @@ jobs:
 
       - name: Add msbuild to PATH (Windows)
         if: startsWith(runner.os, 'Windows')
-        uses: microsoft/setup-msbuild@v1.1
+        uses: microsoft/setup-msbuild@v2
 
       - name: Install (Windows)
         if: startsWith(runner.os, 'Windows')
@@ -84,7 +84,7 @@ jobs:
           path: metamod-${{ matrix.mm_version }}
 
       - name: Setting up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -114,7 +114,7 @@ jobs:
           ambuild
 
       - name: Uploading package
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.event.repository.name }}-l4d-${{ env.GITHUB_SHA_SHORT }}
+          name: ${{ github.event.repository.name }}-l4d-${{ matrix.os_short }}-${{ env.GITHUB_SHA_SHORT }}
           path: src/build/package
