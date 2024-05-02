@@ -7,7 +7,7 @@ const char* matchmaking_dll[] = {"matchmaking_ds.so", "matchmaking.so", 0};
 
 //CBaseServer::GetMaxHumanPlayers(void)const
 //function is in engine.so
-const char* friends_lobby = "\x10\x56\x53\x83\xEC\x6C\xE8\xC3\xC3\xC3\xC3\x81\xC3\xDA\xA4\x23\x00";
+const char* friends_lobby = "\x0F\x53\x83\xEC\x18\xE8\xC3\xC3\xC3\xC3\x81\xC3\xB9\xB8\x23\x00";
 unsigned char friends_lobby_new[] = {0x06, 0x00, 0xB8, 0x3C, 0x00, 0x00, 0x00, 0xC3};
 void* friends_lobby_org = NULL;
 
