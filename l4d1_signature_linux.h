@@ -42,7 +42,7 @@ const char* players_new = "\x03\x1D\x89\xC2\xEB";
 void* players_org = NULL;
 
 //CBaseServer::SetReservationCookie(unsigned long long, char  const*, ...)
-//function in engine.so
+//function in engine.so file
 const char* unreserved = "\x15\x55\x57\x56\x53\x81\xEC\x3C\x01\x00\x00\xE8\xC3\xC3\xC3\xC3\x81\xC3\x93\x8C\x23\x00";
 const char* unreserved_new = "\x01\x00\xC3";
 void* unreserved_org = NULL;
