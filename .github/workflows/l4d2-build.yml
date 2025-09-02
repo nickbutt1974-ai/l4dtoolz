@@ -22,8 +22,7 @@ on:
     paths-ignore:
       - LICENSE
       - README.md
-  schedule:
-    - cron: '30 03 01 */3 *' # Artifacts expire every 3 months
+
 
 jobs:
   build:
