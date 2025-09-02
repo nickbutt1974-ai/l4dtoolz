@@ -1,7 +1,7 @@
 name: l4d2-build
 
 on:
-  workflow_dispatch: {}            # allow "Run workflow" button
+  workflow_dispatch: {}
   push:
     branches: [main, master]
     tags: ['*']
@@ -10,8 +10,8 @@ on:
     branches: [main, master]
     paths-ignore: [LICENSE, README.md]
   schedule:
-    - cron: '0 0 * * 0'            # weekly
-    - cron: '30 03 01 */3 *'       # refresh before GH artifact expiry (~90d)
+    - cron: '0 0 * * 0'
+    - cron: '30 03 01 */3 *'   # refresh before artifact expiry
 
 jobs:
   build:
@@ -21,10 +21,10 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        mm_version: ["1.12-dev"]           # <-- target 1.12-dev (interface 16)
+        mm_version: ["1.12"]          # display label only
         include:
-          - mm_version: "1.12-dev"
-            mm_branch: "1.12-dev"          # <-- branch to checkout for MMS
+          - mm_version: "1.12"
+            mm_branch: "1.12-dev"     # IMPORTANT: snapshot line for build 1217 (interface 16)
           - os: ubuntu-latest
             os_short: linux
           - os: windows-latest
@@ -55,7 +55,9 @@ jobs:
           for /f "usebackq delims=*" %%i in (`vswhere -latest -property installationPath`) do (
             call "%%i"\Common7\Tools\vsdevcmd.bat -arch=x86 -host_arch=x64
           )
-          for /f "delims== tokens=1,2" %%a in ('set') do ( echo>>"%GITHUB_ENV%" %%a=%%b )
+          for /f "delims== tokens=1,2" %%a in ('set') do (
+            echo>>"%GITHUB_ENV%" %%a=%%b
+          )
 
       - name: Checking out MM:Source
         uses: actions/checkout@v4
